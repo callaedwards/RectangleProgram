@@ -1,0 +1,88 @@
+import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.event.*;
+ 
+public class RectangleProgram extends JFrame
+{
+    private static final int WIDTH = 400;
+    private static final int HEIGHT = 300;
+
+    private JLabel length L, widthL, areaL, perimeterL;
+    private JTextField lengthTF, widthTF, areaTF, perimeterTF;
+    private JButton calculateB, exitB;
+    
+    private CalculatebuttonHandler cbHandler;
+    private ExitButtonHandler ebHandler;
+    
+    public RectangleProgram()
+    {
+        //instantiate the labels:
+        lengthL = new JLabel("Enter the length: ", SwingConstants.RIGHT);
+        widthL = new JLabel("Enter the width: ", SwingConstants.RIGHT);
+        areaL = new JLabel("Area: ", SwingConstants.RIGHT);
+        
+        //Text fields:
+        lengthTF = new JTextField(10);
+        widthTF = new JTextField(10);
+        areaTF = new JTextField(10);
+        
+        //Buttons:
+        calculateB = new JButton ("Calculate");
+        cbHandler = new CalculateButtonHandler();
+        calculateB.addActionListener(cbHandler);
+        exitB = new JButton ("Exit");
+        ebJandler = new ExitButtonHandler();
+        exitB.addActionListener(ebHandler);
+        
+        //Set Window Title
+        setTitle("Sample Title: Area of a Rectangle");
+
+        //Get the Content Pane (CP)
+        Container pane = getContentPane();
+
+        //Set the layout
+        pane.setLayout(new GridLayout (4, 2))
+        
+        //Add things to pane
+        pane.add(lengthL);
+        pane.add(lengthTF);
+        pane.add(widthL);
+        pane.add(widthTF);
+        pane.add(areaL);
+        pane.add(areaTF);
+        pane.add(calculateB);
+        pane.add(exitB);
+        
+        //Other JFrame Stuff
+        setSize(WIDTH, HEIGHT);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+    
+    private class CalculateButtonHandler implements ActionListener
+    {
+        public void actinoPerformed(ActionEvent e)
+        {
+            double width, length, area;
+            
+            length = Double.parseDouble(lengthTF.getText());
+            width = Double.parseDouble(widthTF.getText());
+            area = length * width;
+            
+            areaTF.setText("" + area);
+        }
+    }
+    
+    public class ExitButtonHandler implents ActionListener
+    {
+        public void actionPerformed(ActionEvent e
+        {
+            System.exit(0);
+        }
+    }
+    
+    public static void main(String[] args)
+    {
+        RectangleProgram rectObj = new RectangleProgram();
+    }
+}
